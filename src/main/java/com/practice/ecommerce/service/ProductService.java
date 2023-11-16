@@ -1,0 +1,12 @@
+package com.practice.ecommerce.service;
+
+import java.util.Optional;
+
+import com.practice.ecommerce.model.Product;
+
+public interface ProductService {
+	public Product save(Product product);
+	public Optional <Product> get(Long id);
+	public void update(Product product);
+	public void delete(Long id);
+}
