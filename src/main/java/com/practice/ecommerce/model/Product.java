@@ -1,6 +1,17 @@
 package com.practice.ecommerce.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+ 
+@Entity
+@Table(name = "Products")
 public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String description;
@@ -8,13 +19,17 @@ public class Product {
 	private double price;
 	private int quantity;
 	
+	@ManyToOne
+	private User user;
+	
 	//Constructor vacio
 	public Product() {
 		
 	}
 	
 	//Constructor
-	public Product(Long id, String name, String description, String image, double price, int quantity) {
+	
+	public Product(Long id, String name, String description, String image, double price, int quantity, User user) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -22,8 +37,9 @@ public class Product {
 		this.image = image;
 		this.price = price;
 		this.quantity = quantity;
+		this.user = user;
 	}
-	
+
 	// Getters and Setters
 	public Long getId() {
 		return id;
@@ -73,11 +89,21 @@ public class Product {
 		this.quantity = quantity;
 	}
 
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + ", price="
-				+ price + ", quantity=" + quantity + "]";
+				+ price + ", quantity=" + quantity + ", user=" + user + "]";
 	}
+
 	
 	
 }

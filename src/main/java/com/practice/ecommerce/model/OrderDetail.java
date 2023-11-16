@@ -1,24 +1,46 @@
 package com.practice.ecommerce.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Details")
 public class OrderDetail {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private double quantity;
 	private double price;
 	private double total;
 	
+	@OneToOne
+	private Order order;
+	
+	@ManyToOne
+	private Product product;
+	
 	//Constructor vacio
 	public OrderDetail() {
 		
 	}
 	// Constructor
-	public OrderDetail(Long id, String name, double quantity, double price, double total) {
+	
+	public OrderDetail(Long id, String name, double quantity, double price, double total, Order order,
+			Product product) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
 		this.total = total;
+		this.order = order;
+		this.product = product;
 	}
 	
 	//Getters and Setters
@@ -52,11 +74,30 @@ public class OrderDetail {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+	
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDetail [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", total="
-				+ total + "]";
+				+ total + ", order=" + order + ", product=" + product + "]";
 	}
+
+	
 	
 	
 }

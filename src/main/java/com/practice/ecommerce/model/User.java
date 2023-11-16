@@ -1,6 +1,19 @@
 package com.practice.ecommerce.model;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Users")
 public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String username;
@@ -10,14 +23,21 @@ public class User {
 	private String type;
 	private String password;
 	
+	@OneToMany(mappedBy = "user") 
+	private List<Product> products;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders;
+	
 	//Constructor vacio
 	public User() {
 		
 	}
 	
 	//Constructor
+	
 	public User(Long id, String name, String username, String email, String direction, String phone, String type,
-			String password) {
+			String password, List<Product> products, List<Order> order) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -27,11 +47,24 @@ public class User {
 		this.phone = phone;
 		this.type = type;
 		this.password = password;
+		this.products = products;
+		this.orders = order;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	// Getters and Setters
 	public Long getId() {
 		return id;
 	}
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -78,11 +111,29 @@ public class User {
 		this.password = password;
 	}
 
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public List<Order> getOrder() {
+		return orders;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.orders = order;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", direction="
-				+ direction + ", phone=" + phone + ", type=" + type + ", password=" + password + "]";
+				+ direction + ", phone=" + phone + ", type=" + type + ", password=" + password + ", product=" + products
+				+ ", order=" + orders + "]";
 	}
-	
-	
+
+		
 }
