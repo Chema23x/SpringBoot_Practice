@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String name;
 	private String username;
 	private String email;
@@ -36,8 +36,8 @@ public class User {
 	
 	//Constructor
 	
-	public User(Long id, String name, String username, String email, String direction, String phone, String type,
-			String password, List<Product> products, List<Order> order) {
+	public User(Integer id, String name, String username, String email, String direction, String phone, String type,
+			String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -47,8 +47,7 @@ public class User {
 		this.phone = phone;
 		this.type = type;
 		this.password = password;
-		this.products = products;
-		this.orders = order;
+
 	}
 
 	public List<Order> getOrders() {
@@ -60,12 +59,12 @@ public class User {
 	}
 
 	// Getters and Setters
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

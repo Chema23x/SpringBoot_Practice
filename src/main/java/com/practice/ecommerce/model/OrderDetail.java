@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class OrderDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String name;
 	private double quantity;
 	private double price;
@@ -31,7 +31,7 @@ public class OrderDetail {
 	}
 	// Constructor
 	
-	public OrderDetail(Long id, String name, double quantity, double price, double total, Order order,
+	public OrderDetail(Integer id, String name, double quantity, double price, double total, Order order,
 			Product product) {
 		super();
 		this.id = id;
@@ -44,10 +44,10 @@ public class OrderDetail {
 	}
 	
 	//Getters and Setters
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

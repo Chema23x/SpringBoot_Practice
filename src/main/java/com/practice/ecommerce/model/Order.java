@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	private String number;
 	private Date creationDate;
 	private Date receivedDate;
@@ -34,7 +34,7 @@ public class Order {
 		}
 	//Constructor
 
-		public Order(Long id, String number, Date creationDate, Date receivedDate, double total, User user,
+		public Order(Integer id, String number, Date creationDate, Date receivedDate, double total, User user,
 				OrderDetail detail) {
 			super();
 			this.id = id;
@@ -47,11 +47,11 @@ public class Order {
 		}
 		
 	// Getters and Setters
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
