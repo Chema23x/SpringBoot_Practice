@@ -1,5 +1,6 @@
 package com.practice.ecommerce.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.practice.ecommerce.model.Product;
@@ -9,4 +10,5 @@ public interface ProductService {
 	public Optional <Product> get(Long id);
 	public void update(Product product);
 	public void delete(Long id);
+	public List<Product> findAll();
 }
