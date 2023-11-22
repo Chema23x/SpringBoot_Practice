@@ -1,5 +1,7 @@
 package com.practice.ecommerce.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.practice.ecommerce.model.Order;
+import com.practice.ecommerce.model.OrderDetail;
 import com.practice.ecommerce.model.Product;
 import com.practice.ecommerce.service.ProductService;
 
@@ -23,6 +28,12 @@ public class HomeController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	//para almacenar los detalles de la orden
+	List<OrderDetail> detalles = new ArrayList<OrderDetail>();
+	
+	// datos de la orden
+	Order order = new Order();
 
 	@GetMapping("")
 	public String home(Model model) {
@@ -44,7 +55,14 @@ public class HomeController {
 	}
 	
 	@PostMapping("/cart")
-	public String addCart() {
+	public String addCart(@RequestParam Integer id, @RequestParam Integer quantity) {
+		OrderDetail orderDetail = new OrderDetail();
+		Product product = new Product();
+		double sumaTotal = 0;
+		
+		Optional<Product> optionalProduct = productService.get(id);
+		log.info("Producto añadido: {}", optionalProduct.get());
+		log.info("Cantidad: {}", quantity);
 		return "usuario/carrito";
 	}
 }
