@@ -3,9 +3,9 @@ package com.practice.ecommerce.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.practice.ecommerce.model.Product;
+import com.practice.ecommerce.model.OrderDetail;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface IOrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
 
 }
