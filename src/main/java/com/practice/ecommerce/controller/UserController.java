@@ -1,5 +1,9 @@
 package com.practice.ecommerce.controller;
 
+import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +37,32 @@ public class UserController {
 		userService.save(user);
 		
 		return "redirect:/";
+	}
+	
+	@GetMapping ("/login")
+	public String login () {
+		return "usuario/login";
+	}
+	
+	@PostMapping("/acceder")
+	public String acceder(User user, HttpSession session) {
+		logger.info("Accesos: {}",user);
+		
+		Optional<User> user1 = userService.findByEmail(user.getEmail());
+		//logger.info("Usuario de db: {}", user1.get());
+		
+		if(user1.isPresent()) {
+			session.setAttribute("idusuario", user1.get().getId());
+			if(user1.get().getType().equals("ADMIN")) {
+				return "redirect:/administrador";
+			}else {
+				return "redirect:/";
+			}
+		}else {
+			logger.info("Usuario no existe");
+		}
+		
+		return"redirect:/";
 	}
 	
 }
