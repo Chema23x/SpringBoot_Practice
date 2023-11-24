@@ -1,5 +1,6 @@
 package com.practice.ecommerce.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.practice.ecommerce.model.Order;
 import com.practice.ecommerce.model.User;
+import com.practice.ecommerce.service.IOrderService;
 import com.practice.ecommerce.service.IUserService;
 
 @Controller
@@ -24,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private IOrderService orderService;
 	
 	// usuario/registro
 	@GetMapping ("/register")
@@ -68,7 +74,13 @@ public class UserController {
 	
 	@GetMapping("/compras")
 	public String obtenerCompras(Model model, HttpSession session) {
-		model.addAttribute("sesion", session.getAttribute("idusuario"));	
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		
+		User user= userService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+		List<Order> orders = orderService.findByUser(user);
+		
+		model.addAttribute("orders", orders);
+		
 		return "usuario/compras";
 	}
 	
