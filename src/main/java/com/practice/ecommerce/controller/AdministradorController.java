@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.practice.ecommerce.model.Product;
+import com.practice.ecommerce.service.IUserService;
 import com.practice.ecommerce.service.ProductService;
 
 @Controller
@@ -18,11 +19,20 @@ public class AdministradorController {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+	private IUserService userService;
+	
 	@GetMapping("")
 	public String home(Model model) {
 		
 		List <Product> products= productService.findAll();
 		model.addAttribute("products", products);
 		return "administrador/home";
+	}
+	
+	@GetMapping ("/users")
+	public String usuarios(Model model) {
+		model.addAttribute("users", userService.findAll());
+		return "administrador/usuarios";
 	}
 }
