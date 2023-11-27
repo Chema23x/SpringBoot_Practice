@@ -39,7 +39,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			log.info("Esto es el id del usuario: {}", optionalUser.get().getId());
 			session.setAttribute("idusuario", optionalUser.get().getId());
 			User user= optionalUser.get();
-			return org.springframework.security.core.userdetails.User.builder().username(user.getName()).password(bCrypt.encode(user.getPassword())).roles(user.getType()).build();
+			return org.springframework.security.core.userdetails.User.builder().username(user.getName()).password(user.getPassword()).roles(user.getType()).build();
 		}else {
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		}

@@ -56,11 +56,11 @@ public class UserController {
 		return "usuario/login";
 	}
 	
-	@PostMapping("/acceder")
+	@GetMapping("/acceder")
 	public String acceder(User user, HttpSession session) {
 		logger.info("Accesos: {}",user);
 		
-		Optional<User> user1 = userService.findByEmail(user.getEmail());
+		Optional<User> user1 = userService.findById(Integer.parseInt(session.getAttribute("idusuario").toString()));
 		//logger.info("Usuario de db: {}", user1.get());
 		
 		if(user1.isPresent()) {
