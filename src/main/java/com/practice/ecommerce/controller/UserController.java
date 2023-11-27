@@ -21,6 +21,7 @@ import com.practice.ecommerce.model.User;
 import com.practice.ecommerce.service.IOrderService;
 import com.practice.ecommerce.service.IUserService;
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {

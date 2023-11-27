@@ -1,5 +1,6 @@
 package com.practice.ecommerce.model;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -37,15 +38,15 @@ public class Order {
 	//Constructor
 
 		public Order(Integer id, String number, Date creationDate, Date receivedDate, double total, User user,
-				OrderDetail detail) {
-			super();
-			this.id = id;
-			this.number = number;
-			this.creationDate = creationDate;
-			this.receivedDate = receivedDate;
-			this.total = total;
-			this.user = user;
-			this.detail = (List<OrderDetail>) detail;
+		        OrderDetail detail) {
+		    super();
+		    this.id = id;
+		    this.number = number;
+		    this.creationDate = creationDate;
+		    this.receivedDate = receivedDate;
+		    this.total = total;
+		    this.user = user;
+		    this.detail = Collections.singletonList(detail); // or directly assign if detail is a List
 		}
 		
 	// Getters and Setters
